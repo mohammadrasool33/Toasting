@@ -6,6 +6,7 @@ import android.util.Log
 import android.widget.Button
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
@@ -21,9 +22,22 @@ class MainActivity : AppCompatActivity() {
         binding=ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         binding.button.setOnClickListener(){
-            val intent=Intent(this,MainActivity2::class.java)
-            startActivity(intent)
+            showDialog()
         }
+    }
+
+    fun showDialog(){
+        val builder= AlertDialog.Builder(this)
+        builder.apply {
+            setTitle("slaw la to")
+            setMessage("choni")
+            setPositiveButton("ok"){dialog,which->
+                Toast.makeText(applicationContext,"ok",Toast.LENGTH_SHORT).show()
+            }
+            setNegativeButton("cancel"){dialog,which->
+                Toast.makeText(applicationContext,"cancel",Toast.LENGTH_SHORT).show()
+            }
+        }.show()
     }
     override fun onStart(){
         super.onStart()
